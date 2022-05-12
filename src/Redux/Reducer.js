@@ -5,7 +5,8 @@ const initialState = {
 }
 const GET_USER = 'GET_USER';
 
-export function getUser(user) {
+export function getUser() {
+    const user = axios.get('/getUser')
     return {
         type:GET_USER,
         payload: user
@@ -22,8 +23,14 @@ export function getUser(user) {
 export default function Reducer(state = initialState, action){
 const {type, payload} = action;
 switch(type){
-    case GET_USER:
+    // case GET_USER:
+    //     return {...state, user: payload}
+    case GET_USER + '_PENDING':
+        return {...state, loading:true}
+    case GET_USER + '_FULFILLED':
         return {...state, user: payload}
+    case GET_USER + '_REJECTED':
+        return initialState;
     // case GET_ITEMS + '_PENDING':
     //     return {...state, loading:true}
     // case GET_ITEMS + '_FULFILLED':

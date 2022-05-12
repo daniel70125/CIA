@@ -1,25 +1,33 @@
-import logo from './logo.svg';
+import React, {Component} from 'react';
 import './App.css';
+import Routes from './routes';
+import {connect} from 'react-redux';
+import {getUser} from './Redux/Reducer';
+import axios from 'axios';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {  }
+  }
+  async componentDidMount(){
+    await axios.get('/getuser')
+    .then(res => console.log(res.data))
+    .catch(err => console.log(err))
+    // this.props.getUser();
+    // await axios.get('/session')
+    // .then(res => this.props.getUser(res.data))
+    // .catch(err => console.log(err))
+  }
+  render() { 
+    console.log(this.props);
+    return ( 
+      <div className="App">
+        {Routes}
+      </div>
+     );
+  }
 }
-
-export default App;
+const mapStateToProps = reduxState => reduxState;
+export default connect(mapStateToProps, {getUser})(App);

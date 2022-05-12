@@ -21,6 +21,11 @@ app.use(session({
     cookie: {maxAge: 1000 * 60 * 60 * 24}
 }));
 
+app.get('/getuser', (req, res) => {
+    console.log("tried it!");
+    res.send(req.session);
+})
+
 // app.get('/sendtext',(req, res) => {
 //     const {user, name, number, address} = req.body;
 //     const msg = `New order recieved from ${name} (${number})! Address is ${address}`
