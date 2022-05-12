@@ -1,6 +1,6 @@
 import {createStore, applyMiddleware} from 'redux';
-import cookieReducer from './cookieReducer';
+import Reducer from './Reducer';
 import promiseMiddleware from 'redux-promise-middleware';
 
 
-export default createStore(cookieReducer, applyMiddleware(promiseMiddleware) );
+export default createStore(Reducer, applyMiddleware(promiseMiddleware) );
